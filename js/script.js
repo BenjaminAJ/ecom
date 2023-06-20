@@ -1,5 +1,7 @@
 const productContainer = document.querySelector('.productsContainer');
 const spinner = document.querySelector('.spinner');
+const cartqty = document.querySelector('.qty');
+const cartPrice = document.querySelector('.cartPrice');
 
 const productObj = {
     price : '',
@@ -22,7 +24,7 @@ const cart = {
     },
     productList : [],
     nProducts : function getNumberOfProducts() {
-        return this.productList.length + 1;
+        return this.productList.length;
     },
 };
 
@@ -88,6 +90,9 @@ function addToCart(productId) {
             cart.productList.push(element);
             cart.totalprice();
             console.log(cart);
+
+            cartqty.innerHTML = `${cart.nProducts()} product(s)`;
+            cartPrice.innerHTML = `$${cart.price}`;
             // console.log(cart.totalprice());
         }
     });
