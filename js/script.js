@@ -82,7 +82,7 @@ categorys.forEach(element => {
                 <img src="${elem.image}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">${elem.title}</h5>
-                  <p class="card-text">${elem.description}</p>
+                  <p class="card-text">${elem.description.slice(0, 50)}  <a href="">Read more...</a></p>
                   <a href="#" class="btn btn-primary" onclick="addToCart(${elem.id})">Add to Cart</a>
                 </div>
               </div>    
@@ -96,7 +96,8 @@ categorys.forEach(element => {
                     <img src="${elem.image}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">${elem.title}</h5>
-                      <p class="card-text">${elem.description}</p>
+                      <p class="card-text">${elem.description.slice(0, 50)}  <a href="">Read more...</a></p>
+
                       <a href="#" class="btn btn-primary" onclick="addToCart(${elem.id})">Add to Cart</a>
                     </div>
                   </div>    
