@@ -62,7 +62,7 @@ function showAllProducts(params) {
         <img src="${element.image}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${element.title}</h5>
-          <p class="card-text">${element.description}</p>
+           <p class="card-text">${element.description.slice(0, 40)}  <a href="">Read more...</a></p>
           <a href="#" class="btn btn-primary" onclick="addToCart(${element.id})">Add to Cart</a>
         </div>
       </div>    
@@ -122,10 +122,16 @@ function addToCart(productId) {
     productArry.forEach(element => {
         if (element.id === productId) {
             console.log('found product');
+            if (element.quantity) {
+                element.quantity += 1;
+            }
+            else{
+                element.quantity = 1;
+            }
             element.getPrice = function getPrice() {
                 return this.price;
             }
-            // console.log(element);
+            console.log(element);
             cart.productList.push(element);
             cart.totalprice();
             console.log(cart);
