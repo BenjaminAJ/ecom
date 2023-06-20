@@ -1,5 +1,6 @@
 const productContainer = document.querySelector('.productsContainer');
 const spinner = document.querySelector('.spinner');
+const categorys = document.querySelectorAll('.category');
 const cartqty = document.querySelector('.qty');
 const cartPrice = document.querySelector('.cartPrice');
 
@@ -35,7 +36,7 @@ async function getProducts() {
         const res = await fetch('https://fakestoreapi.com/products/');
         const data = await res.json();
         productArry = data;
-        // console.log(productArry);
+        console.log(productArry);
         showAllProducts();
         // return data;
 
@@ -70,11 +71,48 @@ function showAllProducts(params) {
     });
 };
 
+// Show products by category
+categorys.forEach(element => {
+    element.addEventListener('click', () =>{
+        productContainer.innerHTML = '';
+        productArry.forEach(elem => {
+            if (element.innerHTML === 'All') {
+                productContainer.innerHTML += `
+                <div class="card" style="width: 18rem;">
+                <img src="${elem.image}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">${elem.title}</h5>
+                  <p class="card-text">${elem.description}</p>
+                  <a href="#" class="btn btn-primary" onclick="addToCart(${elem.id})">Add to Cart</a>
+                </div>
+              </div>    
+                `;
+
+            }
+            else{
+                if (element.innerHTML === elem.category) {
+                    productContainer.innerHTML += `
+                    <div class="card" style="width: 18rem;">
+                    <img src="${elem.image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">${elem.title}</h5>
+                      <p class="card-text">${elem.description}</p>
+                      <a href="#" class="btn btn-primary" onclick="addToCart(${elem.id})">Add to Cart</a>
+                    </div>
+                  </div>    
+                    `;
+            
+                }
+
+            }
+        });
+    
+    })
+});
 
 // Show products by category
-function showProducts(category) {
-    
-};
+// function showProducts(category) {
+// };
 
 
 
